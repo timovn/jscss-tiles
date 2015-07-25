@@ -52,15 +52,15 @@ var blocs = document.querySelectorAll('.block-containter .bloc');
 var containerW = document.querySelector('.block-containter').clientWidth;
 
 for (var i=0, len=blocs.length, summedBlocWidth = 0, fstImOfRow=0 ; i<len ; i++) {
-	currBloc = blocs[i];
-	currImg = currBloc.querySelector('img');
+	var currBloc = blocs[i];
+	var currImg = currBloc.querySelector('img');
 
 	// if we have fallen on a new row
 	if (summedBlocWidth + currBloc.offsetWidth >= containerW) {
 		var whiteSpace = containerW - summedBlocWidth;
 		var delta = parseInt( (whiteSpace)/(i-fstImOfRow) ); // white space shared amongs the blocs
 
-		for (j=fstImOfRow ; j<i ; j++) { // share the space among the blocs of the row
+		for (var j=fstImOfRow ; j<i ; j++) { // share the space among the blocs of the row
 			blocs[j].querySelector('img').style.width = parseInt(blocs[j].querySelector('img').clientWidth + delta);
 		}
 
