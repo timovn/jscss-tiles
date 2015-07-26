@@ -55,12 +55,11 @@
 	for (var i=0, len=blocs.length, summedBlocWidth = 0, fstImOfRow=0 ; i<len ; i++) {
 		var currBloc = blocs[i];
 		var currImg = currBloc.querySelector('img');
-		var currBlocMarginInW = currBloc.offsetWidth + parseInt(getComputedStyle(currBloc).marginLeft) + parseInt(getComputedStyle(currBloc).marginRight);
+		var currBlocMarginInW = currBloc.offsetWidth + parseInt(getComputedStyle(currBloc).marginLeft) + parseInt(getComputedStyle(currBloc).marginRight) + parseInt(getComputedStyle(currBloc).borderLeftWidth) + parseInt(getComputedStyle(currBloc).borderRightWidth);
 
 		// if we have fallen on a new row
 		if (summedBlocWidth + currBlocMarginInW >= containerW) {
 			var whiteSpace = containerW - summedBlocWidth;
-			console.log(whiteSpace);
 			var delta = parseInt( (whiteSpace)/(i-fstImOfRow) ); // white space shared amongs the blocs
 
 			for (var j=fstImOfRow ; j<i ; j++) { // share the space among the blocs of the row
@@ -80,6 +79,7 @@
 		summedBlocWidth += currBlocMarginInW;
 	}
 }());
+
 
 </script>
 
