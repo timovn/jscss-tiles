@@ -48,27 +48,38 @@
 
 <script type="text/javascript">
 
-var blocs = document.querySelectorAll('.block-containter .bloc');
-var containerW = document.querySelector('.block-containter').clientWidth;
+(function tileImages() {
+	var blocs = document.querySelectorAll('.block-containter .bloc');
+	var containerW = document.querySelector('.block-containter').clientWidth;
 
-for (var i=0, len=blocs.length, summedBlocWidth = 0, fstImOfRow=0 ; i<len ; i++) {
-	var currBloc = blocs[i];
-	var currImg = currBloc.querySelector('img');
+	for (var i=0, len=blocs.length, summedBlocWidth = 0, fstImOfRow=0 ; i<len ; i++) {
+		var currBloc = blocs[i];
+		var currImg = currBloc.querySelector('img');
+		var currBlocMarginInW = currBloc.offsetWidth + parseInt(getComputedStyle(currBloc).marginLeft) + parseInt(getComputedStyle(currBloc).marginRight);
 
-	// if we have fallen on a new row
-	if (summedBlocWidth + currBloc.offsetWidth >= containerW) {
-		var whiteSpace = containerW - summedBlocWidth;
-		var delta = parseInt( (whiteSpace)/(i-fstImOfRow) ); // white space shared amongs the blocs
+		// if we have fallen on a new row
+		if (summedBlocWidth + currBlocMarginInW >= containerW) {
+			var whiteSpace = containerW - summedBlocWidth;
+			console.log(whiteSpace);
+			var delta = parseInt( (whiteSpace)/(i-fstImOfRow) ); // white space shared amongs the blocs
 
-		for (var j=fstImOfRow ; j<i ; j++) { // share the space among the blocs of the row
-			blocs[j].querySelector('img').style.width = parseInt(blocs[j].querySelector('img').clientWidth + delta);
+			for (var j=fstImOfRow ; j<i ; j++) { // share the space among the blocs of the row
+
+				var w = parseInt(getComputedStyle(blocs[j]).width) - parseInt(getComputedStyle(blocs[j]).paddingLeft) - parseInt(getComputedStyle(blocs[j]).paddingRight);
+				// if the bloc is bigger than the image (on purpose, bloc need min-width)
+				if ( parseInt(blocs[j].querySelector('img').clientWidth) < w-2 ) {
+					blocs[j].style.width = parseInt(blocs[j].clientWidth + delta);
+				} else {
+					blocs[j].querySelector('img').style.width = parseInt(blocs[j].querySelector('img').clientWidth + delta);
+				}
+			}
+
+			fstImOfRow = i;
+			summedBlocWidth = 0;
 		}
-
-		fstImOfRow = i;
-		summedBlocWidth = 0;
+		summedBlocWidth += currBlocMarginInW;
 	}
-	summedBlocWidth += currBloc.offsetWidth;
-}
+}());
 
 </script>
 
