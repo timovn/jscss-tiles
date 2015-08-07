@@ -104,10 +104,10 @@
 					var w = jW - jPL - jPR;
 					// if the bloc is bigger than the image (i.e. on purpose, if bloc haz min-width), give the delta to the bloc, not the image in the bloc
 					if ( parseInt(blocs[j].querySelector('img').clientWidth) < w-3 ) {
-						blocs[j].style.width = jW + delta;
+						blocs[j].style.width = (jW + delta) + 'px';
 						fixedSummedBlocWidth += getComputedStyle(blocs[j]).width + jPL+jPR+jBL+jBR+jMR+jML;
 					} else {
-						blocs[j].querySelector('img').style.width = jiW + delta;
+						blocs[j].querySelector('img').style.width = (jiW + delta) + 'px';
 						fixedSummedBlocWidth += getComputedStyle(blocs[j].querySelector('img')).width + jiPL+jiPR+jiBL+jiBR+jiMR+jiML;
 					}
 				}
