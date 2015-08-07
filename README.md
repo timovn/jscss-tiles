@@ -12,7 +12,7 @@ It uses CSS3 Flex-box mode and a little JavaScript.
 The version pure-CSS is not perfect but still very nice.
 The version with JS enhances nicely the display by removing all the white-spaces.
 
-There is no JS prototype, nor is there a real library : the script is so small (20 lines of JS) you don’t need one.
+There is no JS prototype, nor is there a real library : the script is so small (50 lines of JS) you don’t need one.
 
 
 ---
