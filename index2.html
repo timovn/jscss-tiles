@@ -61,7 +61,7 @@
 </div>
 
 <script type="text/javascript">
-(function tileImages() {
+function tileImages() {
 	var blocs = document.querySelectorAll('.block-containter .bloc');
 	var container = document.querySelector('.block-containter');
 	var containerW = parseInt(container.clientWidth) - parseInt(getComputedStyle(container).paddingLeft) - parseInt(getComputedStyle(container).paddingRight) -1 ;
@@ -117,8 +117,8 @@
 		}
 		summedBlocWidth += currBlocW;
 	}
-}());
-
+}
+window.addEventListener('load', tileImages);
 </script>
 
 <footer>Demo Images ©<a href="https://www.flickr.com/people/doug88888/">Doug88888</a></footer>
